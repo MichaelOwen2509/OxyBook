@@ -1,20 +1,14 @@
 "use client"
 
-import { useState } from "react"
 import { BookCard } from "./BookCard"
 import { Book } from "@/types/book"
 
 interface SelectedBooksListProps {
-  initialBooks?: Book[]
+  books: Book[];
+  onRemoveBook: (id: string) => void;
 }
 
-export function SelectedBooksList({ initialBooks = [] }: SelectedBooksListProps) {
-  const [books, setBooks] = useState<Book[]>(initialBooks)
-
-  const handleRemove = (id: string) => {
-    setBooks((prev) => prev.filter((b) => b.id !== id))
-  }
-
+export function SelectedBooksList({ books, onRemoveBook }: SelectedBooksListProps) {
   return (
     <div className="flex flex-col h-full">
 
@@ -27,7 +21,7 @@ export function SelectedBooksList({ initialBooks = [] }: SelectedBooksListProps)
         `}
       >
         {books.map((book) => (
-          <BookCard key={book.id} book={book} onRemove={handleRemove} />
+          <BookCard key={book.id} book={book} onRemove={onRemoveBook} />
         ))}
       </div>
 
