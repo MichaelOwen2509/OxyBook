@@ -18,7 +18,9 @@ def ler_livro():
             return {
                 "codigo": codigo,
                 "titulo": dados_do_livro["titulo"],
-                "imagem": dados_do_livro["imagem"]
+                "imagem": dados_do_livro["imagem"],
+                "autor": dados_do_livro.get("autor", "Autor Desconhecido"),
+                "descricao": dados_do_livro.get("descricao", "Sem descrição")
             }
     
     return {"codigo": None}
