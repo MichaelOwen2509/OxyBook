@@ -3,9 +3,14 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from rotas import router as rotas_biblioteca
 
+descricao_api = """
+API do **Sistema OxyBook**
+"""
+
 app = FastAPI(
     title="API - Sistema OxyBook",
-    description="Backend modular para integração do leitor ACR122U com o React."
+    description=descricao_api,
+    version="1.0.0",
 )
 
 app.add_middleware(
