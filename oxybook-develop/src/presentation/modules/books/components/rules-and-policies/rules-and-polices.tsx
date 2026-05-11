@@ -1,7 +1,12 @@
 import { Ban, Clock, DollarSign, Lock, TriangleAlert } from "lucide-react";
 import { RuleItem } from "./rule-item";
 
-export function RulesAndPolices() {
+interface RulesAndPolicesProps {
+  onFinalize: () => void;
+  isLoading?: boolean;
+}
+
+export function RulesAndPolices({ onFinalize, isLoading }: RulesAndPolicesProps) {
   return (
     <div className="flex flex-col gap-4 relative">
       <div className="rounded-xl border border-[#E8D5C4] bg-white p-5 flex flex-col gap-5">
@@ -56,9 +61,13 @@ export function RulesAndPolices() {
 
       <button
         type="button"
-        className="w-full rounded-xl bg-[#4E0000] text-white font-semibold py-4 text-base hover:bg-[#3a0000] transition-colors"
+        onClick={onFinalize}
+        disabled={isLoading}
+        className={`w-full rounded-xl bg-[#4E0000] text-white font-semibold py-4 text-base hover:bg-[#3a0000] transition-colors ${
+          isLoading ? "opacity-50 cursor-not-allowed" : ""
+        }`}
       >
-        Finalizar
+        {isLoading ? "Processando..." : "Finalizar"}
       </button>
     </div>
   );
